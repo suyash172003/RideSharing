@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: LocationService
+  datasource:
+    username: root
+    password: Saurabh@645
+    url: jdbc:mysql://localhost:3306/LocationService?createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8082
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
