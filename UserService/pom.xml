@@ -91,6 +91,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>USER-SERVICE</finalName>
     </build>
 
 </project>

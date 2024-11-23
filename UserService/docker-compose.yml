@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3307:3306"
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-1
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_EUREKA_SERVICE_URL: http://host.docker.internal:8761/eureka
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
